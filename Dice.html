@@ -1,0 +1,104 @@
+<div id="content">
+    <h1>Virtual Dice Roller</h1>
+    
+    
+    <div id="resultid" style="padding:10px 0px;"><span id="rdice0" style="display: inline-block;width:110px; height:110px;"><img src="img/dice4.png" width="110" height="110" alt="dice 4"></span><span id="rdice1" style="display: inline-block;width:110px; height:110px;"><img src="img/dice1.png" width="110" height="110" alt="dice 1"></span><div id="summulti" style="padding:10px 10px 0px 10px;"></div></div>
+    <form name="calform" onsubmit="return rollDice();">
+    <table class="panel">
+    <tbody><tr>
+        <td valign="top" style="padding-top:8px;">Number of Dice:</td><td>		<input type="number" name="lennumber" value="2" class="infull" style="text-align:left;" onchange="return doInput(this.value);" fdprocessedid="kdc4vvi">
+            <div><input type="range" name="lenrange" min="1" max="100" value="2" class="infull" oninput="return doSliding(this.value);" onchange="return doSliding(this.value);"></div>
+        </td>
+    </tr>
+    <tr><td colspan="2" align="center" style="padding-top:10px;">
+        <input type="submit" name="submit1" value="Roll Dice" onclick="return rollDice();" fdprocessedid="hev5pw">
+    </td></tr>
+    </tbody></table>
+    </form>
+    <script>
+    function genMathRand(){if (window.crypto){var tempGRArray = new Uint32Array(1);return (window.crypto.getRandomValues(tempGRArray)/65536/65536);}else{return Math.random();}}
+    function preShow(){
+        var rdAmt = parseInt(document.calform.lennumber.value);
+        var outImgs = '';
+        for (i=0; i<rdAmt; i++) {
+            var tempid = Math.floor((genMathRand()*6))+1;
+            outImgs += '<span id="rdice'+i+'" style="display: inline-block;width:110px; height:110px;"><img src="img/dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'"></span>';
+        }
+        document.getElementById("resultid").innerHTML = outImgs+'<div id="summulti" style="padding:10px 10px 0px 10px;"></div>';
+    }
+    preShow();
+    function doInput(diin){
+        var frm = document.calform;
+        if (diin<1){
+            frm.lenrange.value = 1;
+            frm.lennumber.value = 1;
+        }else if (diin>100){
+            frm.lenrange.value = 100;
+            frm.lennumber.value = 100;
+        }else{
+            frm.lenrange.value = diin;
+        }
+        preShow();
+    }
+    function doSliding(dsin){
+        var frm = document.calform;
+        frm.lennumber.value = dsin;
+        preShow();
+    }
+    var dCounter = 0;
+    function delayAndShow(){
+        var rdAmt = parseInt(document.calform.lennumber.value);
+        if ((dCounter++)<30){
+            for (i=0; i<rdAmt; i++) {
+                var tempid = Math.floor((genMathRand()*6))+1;
+                document.getElementById("rdice"+i).innerHTML = '<img src="img/dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'">';
+            }
+            setTimeout(delayAndShow, 50);
+        }else{
+            var rSum = 0;
+            var rMultiple = 1;
+            for (i=0; i<rdAmt; i++) {
+                var tempid = Math.floor((genMathRand()*6))+1;
+                document.getElementById("rdice"+i).innerHTML = '<img src="img/dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'">';
+                rSum += tempid;
+                rMultiple *= tempid;
+            }
+            if (rdAmt>1){
+                document.getElementById("summulti").innerHTML = 'Sum: '+rSum+'<br>Product: '+rMultiple;
+            }else{
+                document.getElementById("summulti").innerHTML = '';
+            }
+        }
+    }
+    function rollDice(){
+        dCounter = 0;
+        document.getElementById("summulti").innerHTML = '';
+        setTimeout(delayAndShow, 50);
+        return false;
+    }
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
