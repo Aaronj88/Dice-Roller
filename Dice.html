@@ -2,7 +2,7 @@
     <h1>Virtual Dice Roller</h1>
     
     
-    <div id="resultid" style="padding:10px 0px;"><span id="rdice0" style="display: inline-block;width:110px; height:110px;"><img src="img/dice4.png" width="110" height="110" alt="dice 4"></span><span id="rdice1" style="display: inline-block;width:110px; height:110px;"><img src="img/dice1.png" width="110" height="110" alt="dice 1"></span><div id="summulti" style="padding:10px 10px 0px 10px;"></div></div>
+    <div id="resultid" style="padding:10px 0px;"><span id="rdice0" style="display: inline-block;width:110px; height:110px;"><img src="dice4.png" width="110" height="110" alt="dice 4"></span><span id="rdice1" style="display: inline-block;width:110px; height:110px;"><img src="dice1.png" width="110" height="110" alt="dice 1"></span><div id="summulti" style="padding:10px 10px 0px 10px;"></div></div>
     <form name="calform" onsubmit="return rollDice();">
     <table class="panel">
     <tbody><tr>
@@ -22,7 +22,7 @@
         var outImgs = '';
         for (i=0; i<rdAmt; i++) {
             var tempid = Math.floor((genMathRand()*6))+1;
-            outImgs += '<span id="rdice'+i+'" style="display: inline-block;width:110px; height:110px;"><img src="img/dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'"></span>';
+            outImgs += '<span id="rdice'+i+'" style="display: inline-block;width:110px; height:110px;"><img src="dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'"></span>';
         }
         document.getElementById("resultid").innerHTML = outImgs+'<div id="summulti" style="padding:10px 10px 0px 10px;"></div>';
     }
@@ -51,7 +51,7 @@
         if ((dCounter++)<30){
             for (i=0; i<rdAmt; i++) {
                 var tempid = Math.floor((genMathRand()*6))+1;
-                document.getElementById("rdice"+i).innerHTML = '<img src="img/dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'">';
+                document.getElementById("rdice"+i).innerHTML = '<img src="dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'">';
             }
             setTimeout(delayAndShow, 50);
         }else{
@@ -59,7 +59,7 @@
             var rMultiple = 1;
             for (i=0; i<rdAmt; i++) {
                 var tempid = Math.floor((genMathRand()*6))+1;
-                document.getElementById("rdice"+i).innerHTML = '<img src="img/dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'">';
+                document.getElementById("rdice"+i).innerHTML = '<img src="dice'+tempid+'.png" width="110" height="110" alt="dice '+tempid+'">';
                 rSum += tempid;
                 rMultiple *= tempid;
             }
